@@ -4,11 +4,13 @@ using UnityEngine.EventSystems;
 public class Node : MonoBehaviour {
 	BuildManager buildManager;
 
-	private GameObject turret;
+	public GameObject turret;
 	public Vector3 placementOffset;
 
 	//hightlighting
+	//TODO move these to centralized location so each node does not have its own color
 	public Color hoverColor;
+	public Color failColor;
 	private Color baseColor;
 	private Renderer nodeRenderer;
 
@@ -19,9 +21,16 @@ public class Node : MonoBehaviour {
 	}
 
 
+	public Vector3 GetBuildPosition() {
+		return transform.position + placementOffset;
+	}
+
 
 	private void OnMouseDown() {
-		if (buildManager.GetTurretToBuild() == null)
+		if (!buildManager.CanBuild)
+			return;
+
+		if (EventSystem.current.IsPointerOverGameObject())
 			return;
 
 		//cant build here as there already is a turret
@@ -29,21 +38,22 @@ public class Node : MonoBehaviour {
 			return;
 		}
 
-		GameObject turretToBuild = BuildManager.instance.GetTurretToBuild();
-		turret = Instantiate(turretToBuild, transform.position + placementOffset, transform.rotation);
-		buildManager.SetTurretToBuild(null);
+		buildManager.BuildOnNode(this);
 	}
 
 
 	//mouse over highlighting
 	private void OnMouseEnter() {
-		if (buildManager.GetTurretToBuild() == null)
+		if (!buildManager.CanBuild)
 			return;
 
 		if (EventSystem.current.IsPointerOverGameObject())
 			return;
 
-		nodeRenderer.material.color = hoverColor;
+		if (buildManager.HasMoney)
+			nodeRenderer.material.color = hoverColor;
+		else
+			nodeRenderer.material.color = failColor;
 	}
 	private void OnMouseExit() {
 		nodeRenderer.material.color = baseColor;

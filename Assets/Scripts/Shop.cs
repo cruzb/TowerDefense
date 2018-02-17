@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Shop : MonoBehaviour {
 
@@ -12,13 +13,13 @@ public class Shop : MonoBehaviour {
 	}
 
 
-	public void PurchaseStandardTurret() {
-		buildManager.SetTurretToBuild(buildManager.standardTurretPrefab);
+	public void SelectStandardTurret() {
+		buildManager.SetTurretToBuild(standardTurretData);
 
 	}
 
-	public void PurchaseMissileLauncher() {
-		buildManager.SetTurretToBuild(buildManager.missileLauncherPrefab);
+	public void SelectMissileLauncher() {
+		buildManager.SetTurretToBuild(missileLauncherData);
 		
 	}
 }
