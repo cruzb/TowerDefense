@@ -11,6 +11,8 @@ public class BuildManager : MonoBehaviour {
 	public GameObject missileLauncherPrefab;
 	private TurretData turretToBuild;
 
+	public GameObject buildEffect;
+
 	private void Awake() {
 		if (instance != null) {
 			Debug.Log("Multiple BuildManagers in scene");
@@ -31,6 +33,9 @@ public class BuildManager : MonoBehaviour {
 
 		GameObject turret = Instantiate(turretToBuild.prefab, node.GetBuildPosition(), Quaternion.identity);
 		node.turret = turret;
+
+		GameObject effect = Instantiate(buildEffect, node.GetBuildPosition(), Quaternion.identity);
+		Destroy(effect, 5f);
 	}
 
 	public bool CanBuild { get { return turretToBuild != null;  } }

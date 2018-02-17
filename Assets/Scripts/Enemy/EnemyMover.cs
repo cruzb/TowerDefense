@@ -31,11 +31,16 @@ public class EnemyMover : MonoBehaviour {
 
 	private void GetNextWaypoint() {
 		if(waypointIndex >= Waypoints.points.Length - 1) {
-			Destroy(gameObject);
+			End();
 			return;
 		}
 
 		waypointIndex++;
 		target = Waypoints.points[waypointIndex];
+	}
+
+	private void End() {
+		PlayerManager.instance.RemoveLife();
+		Destroy(gameObject);
 	}
 }
