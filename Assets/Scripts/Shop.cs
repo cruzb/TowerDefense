@@ -5,6 +5,7 @@ public class Shop : MonoBehaviour {
 
 	public TurretData standardTurretData;
 	public TurretData missileLauncherData;
+	public TurretData laserTurretData;
 
 	BuildManager buildManager;
 
@@ -21,5 +22,9 @@ public class Shop : MonoBehaviour {
 	public void SelectMissileLauncher() {
 		buildManager.SetTurretToBuild(missileLauncherData);
 		
+	}
+
+	public void SelectLasertTurret() {
+		buildManager.SetTurretToBuild(laserTurretData);
 	}
 }

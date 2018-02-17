@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
 	public float speed = 70f;
 
 	public GameObject ImpactEffect;
+	public int damage;
 
 	//for sending data to bullet on init
 	//only sends target for now, can send more information for more functionality
@@ -60,7 +61,8 @@ public class Bullet : MonoBehaviour {
 	}
 
 	private void Damage(Transform enemy) {
-		Destroy(enemy.gameObject);
+		if(enemy != null)
+			enemy.GetComponent<EnemyHealth>().DoDamage(damage);
 	}
 
 	private void OnDrawGizmosSelected() {

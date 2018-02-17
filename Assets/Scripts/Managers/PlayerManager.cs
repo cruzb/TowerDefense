@@ -32,5 +32,10 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+	//TODO count up to new money + flytext when gained
+	public void AddMoney(int money) {
+		Money += money;
+	}
+
 
 }
