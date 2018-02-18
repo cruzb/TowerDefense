@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour {
 
-	public float speed = 15f;
+	public float startSpeed = 15f;
+	public float speed;
+
+	public float minSpeed = 5f;
+	public float maxSpeed = 40f;
 
 	private Transform target;
 	private int waypointIndex = 0;
 
 	private void Start () {
+		speed = startSpeed;
 		target = Waypoints.points[waypointIndex];
 	}
 	
@@ -42,5 +47,18 @@ public class EnemyMover : MonoBehaviour {
 	private void End() {
 		PlayerManager.instance.RemoveLife();
 		Destroy(gameObject);
+	}
+
+	public void Slow(float coefficient) {
+		speed = startSpeed * coefficient;
+		speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+	}
+
+	public void SlowStacked(float coefficent) {
+		speed *= coefficent;
+	}
+
+	public void ResetSpeed() {
+		speed = startSpeed;
 	}
 }

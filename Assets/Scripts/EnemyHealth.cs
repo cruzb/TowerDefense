@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 
-	public int health = 100;
+	public float health = 100;
 
 	public int moneyValue = 15;
 
 	public GameObject deathEffect;
 
-	public void DoDamage(int damage) {
+	public void DoDamage(float damage) {
 		health -= damage;
 
 		if(health <= 0) {

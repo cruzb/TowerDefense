@@ -256,9 +256,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3798138ba04cd4280092eb93ae5b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   projectile: {fileID: 1974530666725902, guid: 25e29fad80f9bc64fbf8e571a0c400b6, type: 2}
   fireRate: 1
   range: 10
+  beamRenderer: {fileID: 0}
+  beamEffect: {fileID: 0}
+  impactLight: {fileID: 0}
+  damageOverTime: 35
   target: {fileID: 0}
   turret: {fileID: 4741979433177670}
   rotationSpeed: 8
